@@ -1,0 +1,14 @@
+[debug] [2021-10-18T20:23:37.566Z] ----------------------------------------------------------------------
+[debug] [2021-10-18T20:23:37.569Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\wench\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy
+[debug] [2021-10-18T20:23:37.569Z] CLI Version:   9.20.0
+[debug] [2021-10-18T20:23:37.569Z] Platform:      win32
+[debug] [2021-10-18T20:23:37.569Z] Node Version:  v16.3.0
+[debug] [2021-10-18T20:23:37.576Z] Time:          Mon Oct 18 2021 15:23:37 GMT-0500 (Central Daylight Time)
+[debug] [2021-10-18T20:23:37.576Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2021-10-18T20:23:37.646Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2021-10-18T20:23:37.646Z] > authorizing via signed-in user (wcdutreuil@gmail.com)
+[debug] [2021-10-18T20:23:37.646Z] [iam] checking project real-estate-pg for permissions ["cloudconfig.configs.get","cloudconfig.configs.update","datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebasedatabase.instances.update","firebasehosting.sites.update","firebaserules.releases.create","firebaserules.releases.update","firebaserules.rulesets.create"]
+[debug] [2021-10-18T20:23:37.648Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2021-10-18T20:23:37.648Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>

@@ -1,15 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {Col, Container, Nav, Navbar, Row} from "react-bootstrap";
 
 
 const Footer = () => {
-
     return (
-      <footer style={{position: 'absolute', bottom: 0}} className={"page-footer light font-small grey pt-4 container-fluid"}>
-          <div className="container-fluid text-center text-md-left">
-            <h2>Hey</h2>
-          </div>
-      </footer>
+        <Container fluid className="bg-light fixed-bottom">
+            <Row className="">
+                <Col className={"text-center"}>
+                    All rights reserved Wenchy Tech LLC &copy; 2021
+                </Col>
+            </Row>
+        </Container>
     );
 }
 
