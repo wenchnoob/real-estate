@@ -1,5 +1,6 @@
 import React from "react";
 import {Card, Button} from 'react-bootstrap';
+import {LinkContainer} from "react-router-bootstrap";
 
 
 const CaptionedPic = () => {
@@ -21,7 +22,9 @@ const CaptionedPic = () => {
                             quia. Quo neque error repudiandae fuga? Ipsa laudantium molestias eos
                             sapiente officiis modi at sunt excepturi expedita sint?
                         </Card.Text>
-                        <Button variant="primary">Start Buying</Button>
+                        <LinkContainer to="/houses">
+                            <Button variant="primary">Start Buying</Button>
+                        </LinkContainer>
                     </Card.Body>
                 </Card>
             </div>

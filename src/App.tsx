@@ -4,6 +4,7 @@ import './components/navbar';
 import NavBar from "./components/navbar";
 import Home from './components/home';
 import HouseView from "./components/house_view";
+import Admin from "./components/admin";
 import {BrowserRouter as Router, Switch, Route, Link} from "react-router-dom";
 
 
@@ -16,13 +17,12 @@ function App() {
                       <HouseView/>
                   </Route>
                   <Route path="/admin">
-                      <NavBar/>
+                      <Admin/>
                   </Route>
                   <Route path="/">
-                      <Home />
+                      <Home/>
                   </Route>
               </Switch>
-
           </Router>
     </div>
   );

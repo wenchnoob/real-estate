@@ -1,6 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import {Col, Container, Nav, Navbar, Row} from "react-bootstrap";
+import {Col, Container, Row} from "react-bootstrap";
 
 
 const Footer = () => {
@@ -14,9 +13,5 @@ const Footer = () => {
         </Container>
     );
 }
-
-Footer.propTypes = {
-
-};
 
 export default Footer;
