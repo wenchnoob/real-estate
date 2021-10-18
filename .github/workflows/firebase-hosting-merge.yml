@@ -7,11 +7,13 @@ name: Deploy to Firebase Hosting on merge
     branches:
       - master
 jobs:
+  build:
+    steps:
+      run: /usr/local/bin/npx build
   build_and_deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      run: /usr/local/bin/npx build
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
