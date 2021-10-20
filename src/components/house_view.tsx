@@ -10,7 +10,7 @@ const HouseView = () => {
             <NavBar/>
             <Container>
                 <CardGroup>
-                    <Row xs={1} sm={2} md={3} lg={4} xl={5} className="my-5 align-content-center">
+                    <Row xs={1} sm={1} md={3} lg={4} xl={5} className="my-5 align-content-center">
 
                         {
                             (() => {
