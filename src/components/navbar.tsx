@@ -5,7 +5,7 @@ import { LinkContainer } from 'react-router-bootstrap';
 const NavBar: any = () => {
     return (
         <Navbar bg="light" expand="lg">
-            <Container>
+            {/* <Container>
                 <Navbar.Brand href="/" className="mr-5 ml-0">Hector's Real Estate</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
@@ -21,7 +21,7 @@ const NavBar: any = () => {
                         </LinkContainer>
                     </Nav>
                 </Navbar.Collapse>
-            </Container>
+            </Container> */}
         </Navbar>
     );
 }
