@@ -16,13 +16,13 @@ export const CenteredContainer = styled.div`
 
 const Home: NextPage = () => {
     return (
-        <div>
+        <>
             <NavBar/>
             <CenteredContainer>
                 <CaptionedPic/>
             </CenteredContainer>
             <Footer/>
-        </div>
+        </>
     );
 };
 

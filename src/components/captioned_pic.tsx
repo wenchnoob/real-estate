@@ -5,6 +5,7 @@ import styled from "styled-components";
 
 export const HalfDiv = styled.div`
     width: 50%;
+    height: 50%;
 `;
 
 const CaptionedPic = () => {
