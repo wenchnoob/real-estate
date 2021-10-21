@@ -19,9 +19,15 @@ const NavBar: any = () => {
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
-                        <StyledLink href="/" >Home</StyledLink>
-                        <StyledLink href="/houses">Houses</StyledLink>
-                        <StyledLink href="/admin">Admin</StyledLink>
+                        <Link href='/' passHref>
+                            <StyledLink>Home</StyledLink>
+                        </Link>
+                        <Link href='/houses' passHref>
+                            <StyledLink>Houses</StyledLink>
+                        </Link>
+                        <Link href='/admin' passHref>
+                            <StyledLink>Admin</StyledLink>
+                        </Link>
                     </Nav>
                 </Navbar.Collapse>
             </Container>

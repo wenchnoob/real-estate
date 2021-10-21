@@ -1,13 +1,17 @@
 import React from "react";
 import {Card, Button} from 'react-bootstrap';
 import Link from 'next/link';
+import styled from "styled-components";
 
+export const HalfDiv = styled.div`
+    width: 50%;
+`;
 
 const CaptionedPic = () => {
     return (
         <>
-            <div>
-                <Card className="container my-lg-5" >
+            <HalfDiv>
+                <Card >
                     <Card.Img variant="top" src="Capture0.png" />
                     <Card.Body>
                         <Card.Title>Hector Flores</Card.Title>
@@ -27,7 +31,7 @@ const CaptionedPic = () => {
                         </Link>
                     </Card.Body>
                 </Card>
-            </div>
+            </HalfDiv>
         </>
     );
 }
