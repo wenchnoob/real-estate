@@ -1,5 +1,5 @@
 import React from "react";
-import {Button, Container, Row, Col, Card} from "react-bootstrap";
+import {Button, Container, Row, Col} from "react-bootstrap";
 
 const HouseManager = () => {
     let house = 0;

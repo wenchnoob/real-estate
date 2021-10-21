@@ -1,8 +1,8 @@
 import React from 'react';
 import './App.css';
 import './components/navbar';
-import Home from './components/home';
-import HouseView from "./components/house_view";
+import Home from '../pages';
+import HouseView from "../pages/houses";
 import Admin from "../pages/admin";
 import {BrowserRouter as Router, Switch, Route, useParams, useLocation} from "react-router-dom";
 

@@ -1,6 +1,6 @@
 import React from "react";
-import NavBar from "./navbar";
-import Footer from "./footer";
+import NavBar from "../../src/components/navbar";
+import Footer from "../../src/components/footer";
 import {Card, CardGroup, Col, Container, Row} from "react-bootstrap";
 
 const HouseView = () => {
