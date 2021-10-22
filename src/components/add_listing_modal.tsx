@@ -97,7 +97,7 @@ export const AddListingModal = (): JSX.Element => {
                                 </Form.Select>
                             </Form.Group>
 
-                            <Form.Group as={Col} controlId="formGridZip" onChange={onStateChange}>
+                            <Form.Group as={Col} controlId="formGridZip" onChange={onZipChange}>
                                 <Form.Label>Zip</Form.Label>
                                 <Form.Control />
                             </Form.Group>

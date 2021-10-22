@@ -11,6 +11,7 @@ export const StyledCard = styled(Card)`
     margin: 10px;
 `;
 
+
 export interface HouseCardInterface {
     isAdmin: boolean,
     id: string,
@@ -37,15 +38,15 @@ const HouseCard = ({isAdmin, id, img, address, address2, city, state, zip}: Hous
             {
                 isAdmin ?
                 <>
-                    <Card.Link href="#">View</Card.Link>
-                    <Card.Link href="#">Edit</Card.Link>
-                    <Button onClick={() => {
+                    <Button style={{marginLeft: 10, marginRight: 10,}} >View</Button>
+                    <Button style={{marginLeft: 10, marginRight: 10,}} >Edit</Button>
+                    <Button style={{marginLeft: 10, marginRight: 10,}} onClick={() => {
                         set(ref(db, table+id), null).then(() => {window.location.reload()});
                     }
                     }>Delete</Button>
                 </>
                 :
-                <Card.Link href="#">View More</Card.Link>
+                <Button href="#">View More</Button>
             }
         </Card.Body>
     </StyledCard>

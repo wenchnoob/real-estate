@@ -63,7 +63,7 @@ const HouseView = ({ isAdmin }: {
                             const cols = [];
                             for (var i = 0; i < houses.length; i++) cols.push(
                                 <Col>
-                                   <HouseCard isAdmin {...houses[i]} onChange={() => setRefresh(!refresh)}/>
+                                   <HouseCard isAdmin={isAdmin} {...houses[i]} onChange={() => setRefresh(!refresh)}/>
                                 </Col>
                             );
                             return cols;
