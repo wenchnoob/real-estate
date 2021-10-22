@@ -3,8 +3,9 @@ import { Card, CardGroup, Col, Container, Row, Button } from "react-bootstrap";
 import React from "react";
 import { useEffect, useState } from "react";
 import { AddListingModal } from "./add_listing_modal";
-import { getDatabase, ref, get, child } from 'firebase/database';
+import { getDatabase, ref, get, set, child } from 'firebase/database';
 import app from '../scripts/firebase';
+import HouseCard from "./house_card";
 
 
 
@@ -12,11 +13,6 @@ export const StyledContainer = styled(Container)`
     margin-top: 3rem;
     margin-bottom: 3rem;
     padding: 10px;
-`;
-
-export const StyledCard = styled(Card)`
-    min-width: 15rem;
-    margin: 10px;
 `;
 
 
@@ -27,6 +23,10 @@ const HouseView = ({ isAdmin }: {
     const table = 'houses/';
     const db = getDatabase(app);
     const [houses, setHouses] = useState([]);
+    const [refresh, setRefresh] = useState(true);
+    const reload = () => {
+        setRefresh(!refresh);
+    }
 
     useEffect(() => {
         get(child(ref(db), 'houses/')).then((snapshot) => {
@@ -54,7 +54,7 @@ const HouseView = ({ isAdmin }: {
 
                 {isAdmin ?
                     <div>
-                        <AddListingModal />
+                        <AddListingModal onChange={() => setRefresh(!refresh)}/>
                     </div>
                     :
                     <></>
@@ -66,28 +66,7 @@ const HouseView = ({ isAdmin }: {
                             const cols = [];
                             for (var i = 0; i < houses.length; i++) cols.push(
                                 <Col>
-                                    <StyledCard>
-                                        <Card.Img variant="top" src={houses[i]['image']}/>
-                                        <Card.Body>
-                                            <Card.Title>House {houses[i]['house']}</Card.Title>
-                                            <Card.Text>
-                                                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                                Maxime mollitia,
-                                                molestiae quas vel sint commodi repudiandae consequuntur
-                                                voluptatum laborum
-                                            </Card.Text>
-                                            {
-                                                isAdmin ?
-                                                <>
-                                                    <Card.Link href="#">View</Card.Link>
-                                                    <Card.Link href="#">Edit</Card.Link>
-                                                    <Card.Link href="#">Delete</Card.Link>
-                                                </>
-                                                :
-                                                <Card.Link href="#">View More</Card.Link>
-                                            }
-                                        </Card.Body>
-                                    </StyledCard>
+                                   <HouseCard isAdmin {...houses[i]} onChange={() => setRefresh(!refresh)}/>
                                 </Col>
                             );
                             return cols;

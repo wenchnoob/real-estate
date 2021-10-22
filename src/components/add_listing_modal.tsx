@@ -1,11 +1,11 @@
 import React from 'react'
 import { useState } from 'react';
 import { Modal, Button, Form, Row, Col } from 'react-bootstrap';
-import { getDatabase, ref, set } from 'firebase/database';
+import { Database, getDatabase, ref, set } from 'firebase/database';
 import app from '../scripts/firebase';
 import { v4 as uuidv4 } from 'uuid';
 
-export const AddListingModal = (): JSX.Element => {
+export const AddListingModal = ({ onChange }): JSX.Element => {
 
     const table = 'houses/';
     const db = getDatabase(app);
@@ -17,39 +17,46 @@ export const AddListingModal = (): JSX.Element => {
     const [address, setAddress] = useState('');
     const onAddressChange = ({target: {value}}: {target: any}) => setAddress(value);
 
+    const [address2, setAddress2] = useState('');
+    const onAddress2Change = ({target: {value}}: {target: any}) => setAddress2(value);
+
+    const [city, setCity] = useState('');
+    const onCityChange = ({target: {value}}: {target: any}) => setCity(value);
+
+    const [state, setState] = useState('');
+    const onStateChange = ({target: {value}}: {target: any}) => setState(value);
+
+    const [zip, setZip] = useState('');
+    const onZipChange = ({target: {value}}: {target: any}) => setZip(value);
+
     const [myImg, setMyImg] = useState('');
     const [images, setImages] = useState([]);
     const onImagesChange = ({target: {files}}: {target: any}) => {
         if (!files) return;
         if (!files[0]) return;
-        setMyImg(URL.createObjectURL(files[0]));
-        setImages(files);
-        //console.log(myImg);
-        //console.log(target);
-
-        let canvas = document.createElement('canvas');
-
-
-        
 
         let reader = new FileReader();
         reader.readAsDataURL(files[0]);
-        reader.onload = () => { 
-            let id = uuidv4();
-            set(ref(db, table + id),
-            {
-                house: address,
-                image: reader.result,
-            });
+        reader.onload = () => {
+            setMyImg(reader.result);
         };
-
-       
-        console.log(files);
     }
 
     const handleSubmit = () => {
-        
-        console.log("submitted");
+        setTimeout(() => {
+            let id = uuidv4();
+            set(ref(db, table + id), {
+                id: id,
+                address: address,
+                address2: address2,
+                city: city,
+                state: state,
+                zip: zip,
+                img: myImg,
+            });
+        }, 100);
+        handleClose();
+        onChange();
     };
 
     return (
@@ -70,26 +77,28 @@ export const AddListingModal = (): JSX.Element => {
                             <Form.Control placeholder="1234 Main St" />
                         </Form.Group>
 
-                        <Form.Group className="mb-3" controlId="formGridAddress2">
+                        <Form.Group className="mb-3" controlId="formGridAddress2" onChange={onAddress2Change}>
                             <Form.Label>Address 2</Form.Label>
                             <Form.Control placeholder="Apartment, studio, or floor" />
                         </Form.Group>
 
                         <Row className="mb-3">
-                            <Form.Group as={Col} controlId="formGridCity">
+                            <Form.Group as={Col} controlId="formGridCity" onChange={onCityChange}>
                                 <Form.Label>City</Form.Label>
                                 <Form.Control />
                             </Form.Group>
 
-                            <Form.Group as={Col} controlId="formGridState">
+                            <Form.Group as={Col} controlId="formGridState" onChange={onStateChange}>
                                 <Form.Label>State</Form.Label>
                                 <Form.Select defaultValue="Choose...">
                                     <option>Choose...</option>
-                                    <option>...</option>
+                                    <option>FL</option>
+                                    <option>GA</option>
+                                    <option>AL</option>
                                 </Form.Select>
                             </Form.Group>
 
-                            <Form.Group as={Col} controlId="formGridZip">
+                            <Form.Group as={Col} controlId="formGridZip" onChange={onStateChange}>
                                 <Form.Label>Zip</Form.Label>
                                 <Form.Control />
                             </Form.Group>
