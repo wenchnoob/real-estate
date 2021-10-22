@@ -31,17 +31,14 @@ const HouseView = ({ isAdmin }: {
     useEffect(() => {
         get(child(ref(db), 'houses/')).then((snapshot) => {
             if (snapshot.exists()) {
-                let temp = [];
+                let temp: any[] = [];
                 let data = snapshot.val();
                 var keys = Object.keys(data);
                 keys.forEach(k => temp.push(data[k]));
                 console.log(houses.length);
                 console.log(temp.length);
                 console.log(houses.length != temp.length);
-                if (houses.length != temp.length) setHouses(temp);
-                
-                console.log(temp);
-                console.log('houses', houses);
+                if (houses.length != temp.length) setHouses(temp as never[]);
             }
         });
         return () => {}
@@ -54,7 +51,7 @@ const HouseView = ({ isAdmin }: {
 
                 {isAdmin ?
                     <div>
-                        <AddListingModal onChange={() => setRefresh(!refresh)}/>
+                        <AddListingModal/>
                     </div>
                     :
                     <></>

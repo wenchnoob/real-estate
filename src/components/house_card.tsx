@@ -11,8 +11,18 @@ export const StyledCard = styled(Card)`
     margin: 10px;
 `;
 
+export interface HouseCardInterface {
+    isAdmin: boolean,
+    id: string,
+    img: string,
+    address: string,
+    address2: string,
+    city: string,
+    state: string,
+    zip: string,
+};
 
-const HouseCard = ({isAdmin, id, img, address, address2, city, state, zip, onChange}) => {
+const HouseCard = ({isAdmin, id, img, address, address2, city, state, zip}: HouseCardInterface) => {
     const table = 'houses/';
     const db = getDatabase(app);
 
@@ -30,8 +40,7 @@ const HouseCard = ({isAdmin, id, img, address, address2, city, state, zip, onCha
                     <Card.Link href="#">View</Card.Link>
                     <Card.Link href="#">Edit</Card.Link>
                     <Button onClick={() => {
-                        set(ref(db, table+id), null);
-                        onChange();
+                        set(ref(db, table+id), null).then(() => {window.location.reload()});
                     }
                     }>Delete</Button>
                 </>

@@ -5,7 +5,7 @@ import { Database, getDatabase, ref, set } from 'firebase/database';
 import app from '../scripts/firebase';
 import { v4 as uuidv4 } from 'uuid';
 
-export const AddListingModal = ({ onChange }): JSX.Element => {
+export const AddListingModal = (): JSX.Element => {
 
     const table = 'houses/';
     const db = getDatabase(app);
@@ -38,7 +38,7 @@ export const AddListingModal = ({ onChange }): JSX.Element => {
         let reader = new FileReader();
         reader.readAsDataURL(files[0]);
         reader.onload = () => {
-            setMyImg(reader.result);
+            setMyImg(reader.result as string);
         };
     }
 
@@ -53,10 +53,9 @@ export const AddListingModal = ({ onChange }): JSX.Element => {
                 state: state,
                 zip: zip,
                 img: myImg,
-            });
+            }).then(() => {window.location.reload()});
         }, 100);
         handleClose();
-        onChange();
     };
 
     return (
