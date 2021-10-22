@@ -1,5 +1,5 @@
 import React from "react";
-import {Card, Button} from 'react-bootstrap';
+import { Card, Button } from 'react-bootstrap';
 import Link from 'next/link';
 import styled from "styled-components";
 

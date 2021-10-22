@@ -1,7 +1,5 @@
 import React from 'react';
-import NavBar from "../src/components/navbar";
 import CaptionedPic from "../src/components/captioned_pic";
-import Footer from "../src/components/footer";
 import styled from "styled-components";
 import { NextPage } from 'next';
 
@@ -17,11 +15,9 @@ export const CenteredContainer = styled.div`
 const Home: NextPage = () => {
     return (
         <>
-            <NavBar/>
             <CenteredContainer>
                 <CaptionedPic/>
             </CenteredContainer>
-            <Footer/>
         </>
     );
 };
