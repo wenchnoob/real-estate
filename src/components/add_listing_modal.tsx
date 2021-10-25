@@ -4,13 +4,14 @@ import { Modal, Button, Form, Row, Col } from 'react-bootstrap';
 import { Database, getDatabase, ref, set } from 'firebase/database';
 import app from '../scripts/firebase';
 import { v4 as uuidv4 } from 'uuid';
+import useSWR from 'swr';
 
-export const AddListingModal = (): JSX.Element => {
+export const AddListingModal = ({ id }: {id?: string}): JSX.Element => {
 
     const table = 'houses/';
     const db = getDatabase(app);
 
-    const [show, setShow] = useState(false);
+    const [show, setShow] = useState(id && id !== '');
     const handleShow = () => setShow(true);
     const handleClose = () => setShow(false);
 
@@ -42,18 +43,35 @@ export const AddListingModal = (): JSX.Element => {
         };
     }
 
+    let house = {};
+    if (id) {
+        const { data , error } = useSWR('/api/house/'+id, (url) => fetch(url).then((res) => res.json()));
+        if (error) return <div>Server Error</div>
+        if (!data) return <></>
+        house = data['house'];
+    }
+
+    if (house !== {}) {
+        if (address === '') setAddress(house['address'] || undefined);
+        if (address2 === '') setAddress2(house['address2'] || undefined);
+        if (city === '') setCity(house['city'] || undefined);
+        if (state === '') setState(house['state'] || undefined);
+        if (zip === '') setZip(house['zip'] || undefined);
+        if (myImg === '') setMyImg(house['img'] || undefined);
+    }
+
     const handleSubmit = () => {
         setTimeout(() => {
-            let id = uuidv4();
+            id = id || uuidv4();
             set(ref(db, table + id), {
-                id: id,
-                address: address,
-                address2: address2,
-                city: city,
-                state: state,
-                zip: zip,
-                img: myImg,
-            }).then(() => {window.location.reload()});
+                id: id || '',
+                address: address || '',
+                address2: address2 || '',
+                city: city || '',
+                state: state || '',
+                zip: zip || '',
+                img: myImg || '',
+            }).then(() => {window.location.replace('/admin')});
         }, 100);
         handleClose();
     };
@@ -67,39 +85,38 @@ export const AddListingModal = (): JSX.Element => {
 
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
-                    <Modal.Title>Add a Listing</Modal.Title>
+                    <Modal.Title>{id ? 'Add a Listing': 'Edit a listing'}</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <Form>
                         <Form.Group className="mb-3" controlId="formGridAddress1" onChange={onAddressChange}>
                             <Form.Label>Address</Form.Label>
-                            <Form.Control placeholder="1234 Main St" />
+                            <Form.Control placeholder="1234 Main St" value={address}/>
                         </Form.Group>
 
                         <Form.Group className="mb-3" controlId="formGridAddress2" onChange={onAddress2Change}>
                             <Form.Label>Address 2</Form.Label>
-                            <Form.Control placeholder="Apartment, studio, or floor" />
+                            <Form.Control placeholder="Apartment, studio, or floor" value={address2} />
                         </Form.Group>
 
                         <Row className="mb-3">
                             <Form.Group as={Col} controlId="formGridCity" onChange={onCityChange}>
                                 <Form.Label>City</Form.Label>
-                                <Form.Control />
+                                <Form.Control value={city}/>
                             </Form.Group>
 
                             <Form.Group as={Col} controlId="formGridState" onChange={onStateChange}>
                                 <Form.Label>State</Form.Label>
-                                <Form.Select defaultValue="Choose...">
-                                    <option>Choose...</option>
-                                    <option>FL</option>
-                                    <option>GA</option>
-                                    <option>AL</option>
+                                <Form.Select defaultValue="Choose..." value={state}>
+                                    <option value="FL">FL</option>
+                                    <option value="GA">GA</option>
+                                    <option value="AL">AL</option>
                                 </Form.Select>
                             </Form.Group>
 
                             <Form.Group as={Col} controlId="formGridZip" onChange={onZipChange}>
                                 <Form.Label>Zip</Form.Label>
-                                <Form.Control />
+                                <Form.Control value={zip} />
                             </Form.Group>
 
 

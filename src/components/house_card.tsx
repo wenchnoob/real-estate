@@ -1,9 +1,7 @@
 import styled from "styled-components";
 import { Card, CardGroup, Col, Container, Row, Button } from "react-bootstrap";
 import React from "react";
-import { useEffect, useState } from "react";
-import { AddListingModal } from "./add_listing_modal";
-import { getDatabase, ref, get, set, child } from 'firebase/database';
+import { getDatabase, ref, set} from 'firebase/database';
 import app from '../scripts/firebase';
 
 export const StyledCard = styled(Card)`
@@ -38,15 +36,19 @@ const HouseCard = ({isAdmin, id, img, address, address2, city, state, zip}: Hous
             {
                 isAdmin ?
                 <>
-                    <Button style={{marginLeft: 10, marginRight: 10,}} >View</Button>
-                    <Button style={{marginLeft: 10, marginRight: 10,}} >Edit</Button>
+                    <Button style={{marginLeft: 10, marginRight: 10,}} onClick={() => {
+                    window.location.replace(`/house/${id}`);
+                }}>View</Button>
+                    <Button style={{marginLeft: 10, marginRight: 10,}} onClick={() => {window.location.replace('/admin?edit='+id)}}>Edit</Button>
                     <Button style={{marginLeft: 10, marginRight: 10,}} onClick={() => {
                         set(ref(db, table+id), null).then(() => {window.location.reload()});
                     }
                     }>Delete</Button>
                 </>
                 :
-                <Button href="#">View More</Button>
+                <Button onClick={() => {
+                    window.location.replace(`/house/${id}`);
+                }}>View More</Button>
             }
         </Card.Body>
     </StyledCard>

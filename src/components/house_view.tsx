@@ -1,13 +1,12 @@
 import styled from "styled-components";
-import { Card, CardGroup, Col, Container, Row, Button } from "react-bootstrap";
+import { CardGroup, Col, Container, Row } from "react-bootstrap";
 import React from "react";
 import { useEffect, useState } from "react";
 import { AddListingModal } from "./add_listing_modal";
 import { getDatabase, ref, get, set, child } from 'firebase/database';
 import app from '../scripts/firebase';
 import HouseCard from "./house_card";
-
-
+import useSWR from 'swr';
 
 export const StyledContainer = styled(Container)`
     margin-top: 3rem;
@@ -16,59 +15,39 @@ export const StyledContainer = styled(Container)`
 `;
 
 
-const HouseView = ({ isAdmin }: {
+const HouseView = ({ isAdmin, edit }: {
     isAdmin?: boolean;
+    edit?: string;
 }) => {
+    const { data , error } = useSWR('/api/houses', (url) => fetch(url).then((res) => res.json()));
+    if (error) return <div>Server Error</div>
+    if (!data) return <></>
+    const { houses } = data;
 
-    const table = 'houses/';
-    const db = getDatabase(app);
-    const [houses, setHouses] = useState([]);
-    const [refresh, setRefresh] = useState(true);
-    const reload = () => {
-        setRefresh(!refresh);
-    }
-
-    useEffect(() => {
-        get(child(ref(db), 'houses/')).then((snapshot) => {
-            if (snapshot.exists()) {
-                let temp: any[] = [];
-                let data = snapshot.val();
-                var keys = Object.keys(data);
-                keys.forEach(k => temp.push(data[k]));
-                console.log(houses.length);
-                console.log(temp.length);
-                console.log(houses.length != temp.length);
-                if (houses.length != temp.length) setHouses(temp as never[]);
-            }
-        });
-        return () => {}
-    }, [])
-
-    let house = 0;
     return (
         <>
             <StyledContainer>
 
                 {isAdmin ?
                     <div>
-                        <AddListingModal/>
+                        <AddListingModal id={edit}/>
                     </div>
                     :
                     <></>
                 }
                 <CardGroup>
                     <Row>
-                    {
-                        (() => {
-                            const cols = [];
-                            for (var i = 0; i < houses.length; i++) cols.push(
-                                <Col>
-                                   <HouseCard isAdmin={isAdmin} {...houses[i]} onChange={() => setRefresh(!refresh)}/>
-                                </Col>
-                            );
-                            return cols;
-                        })()
-                    }
+                        {
+                            (() => {
+                                const cols = [];
+                                for (var i = 0; i < houses.length; i++) cols.push(
+                                    <Col>
+                                        <HouseCard isAdmin={isAdmin} {...houses[i]} />
+                                    </Col>
+                                );
+                                return cols;
+                            })()
+                        }
                     </Row>
                 </CardGroup>
             </StyledContainer>
