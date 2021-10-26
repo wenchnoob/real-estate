@@ -1,7 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { getDatabase, ref, get, set, child } from 'firebase/database';
 import app from '../../../src/scripts/firebase';
-import { useRouter } from "next/router";
 
 type Data = {
   house: any

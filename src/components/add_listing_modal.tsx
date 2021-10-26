@@ -1,10 +1,14 @@
-import React from 'react'
+import React, { Dispatch, SetStateAction } from 'react'
 import { useState } from 'react';
 import { Modal, Button, Form, Row, Col } from 'react-bootstrap';
 import { Database, getDatabase, ref, set } from 'firebase/database';
 import app from '../scripts/firebase';
 import { v4 as uuidv4 } from 'uuid';
 import useSWR from 'swr';
+import { House } from '../scripts/types';
+import PicturesPreview from './pictures_preview';
+import { readImg } from '../scripts/utils';
+import image from 'next/image';
 
 export const AddListingModal = ({ id }: {id?: string}): JSX.Element => {
 
@@ -15,62 +19,62 @@ export const AddListingModal = ({ id }: {id?: string}): JSX.Element => {
     const handleShow = () => setShow(true);
     const handleClose = () => setShow(false);
 
-    const [address, setAddress] = useState('');
-    const onAddressChange = ({target: {value}}: {target: any}) => setAddress(value);
+    const [house, setHouse] : [House | undefined, Dispatch<SetStateAction<House | undefined>>] = useState();
 
-    const [address2, setAddress2] = useState('');
-    const onAddress2Change = ({target: {value}}: {target: any}) => setAddress2(value);
+   
+    const onAddressChange = ({target: {value}}: {target: any}) => setHouse({
+        ...house,
+        address: value,
+    } as House);
+    const onAddress2Change = ({target: {value}}: {target: any}) => setHouse({
+        ...house,
+        address2: value,
+    } as House);
+    const onCityChange = ({target: {value}}: {target: any}) => setHouse({
+        ...house,
+        city: value,
+    } as House);
+    const onStateChange = ({target: {value}}: {target: any}) => setHouse({
+        ...house,
+        state: value,
+    } as House);
+    const onZipChange = ({target: {value}}: {target: any}) => setHouse({
+        ...house,
+        zip: value,
+    } as House);
 
-    const [city, setCity] = useState('');
-    const onCityChange = ({target: {value}}: {target: any}) => setCity(value);
-
-    const [state, setState] = useState('');
-    const onStateChange = ({target: {value}}: {target: any}) => setState(value);
-
-    const [zip, setZip] = useState('');
-    const onZipChange = ({target: {value}}: {target: any}) => setZip(value);
-
-    const [myImg, setMyImg] = useState('');
-    const [images, setImages] = useState([]);
     const onImagesChange = ({target: {files}}: {target: any}) => {
         if (!files) return;
         if (!files[0]) return;
-
-        let reader = new FileReader();
-        reader.readAsDataURL(files[0]);
-        reader.onload = () => {
-            setMyImg(reader.result as string);
+        
+        const readFiles = async (files: any[]) => {
+            let temp: string[] = [];
+            for (const file of files) {
+                const tmp = await readImg(file);
+                temp.push(tmp);
+            }
+            return temp;
         };
+        
+        readFiles(files).then((newImgs) => setHouse({
+            ...house,
+            images: house && house.images ? [...house.images, ...newImgs] : newImgs,
+        } as House));
     }
 
-    let house = {};
     if (id) {
         const { data , error } = useSWR('/api/house/'+id, (url) => fetch(url).then((res) => res.json()));
         if (error) return <div>Server Error</div>
         if (!data) return <></>
-        house = data['house'];
-    }
-
-    if (house !== {}) {
-        if (address === '') setAddress(house['address'] || undefined);
-        if (address2 === '') setAddress2(house['address2'] || undefined);
-        if (city === '') setCity(house['city'] || undefined);
-        if (state === '') setState(house['state'] || undefined);
-        if (zip === '') setZip(house['zip'] || undefined);
-        if (myImg === '') setMyImg(house['img'] || undefined);
+        if (!house) setHouse(data.house);
     }
 
     const handleSubmit = () => {
         setTimeout(() => {
             id = id || uuidv4();
             set(ref(db, table + id), {
-                id: id || '',
-                address: address || '',
-                address2: address2 || '',
-                city: city || '',
-                state: state || '',
-                zip: zip || '',
-                img: myImg || '',
+                ...house,
+                id: id,
             }).then(() => {window.location.replace('/admin')});
         }, 100);
         handleClose();
@@ -91,23 +95,23 @@ export const AddListingModal = ({ id }: {id?: string}): JSX.Element => {
                     <Form>
                         <Form.Group className="mb-3" controlId="formGridAddress1" onChange={onAddressChange}>
                             <Form.Label>Address</Form.Label>
-                            <Form.Control placeholder="1234 Main St" value={address}/>
+                            <Form.Control placeholder="1234 Main St" value={house && house.address}/>
                         </Form.Group>
 
                         <Form.Group className="mb-3" controlId="formGridAddress2" onChange={onAddress2Change}>
                             <Form.Label>Address 2</Form.Label>
-                            <Form.Control placeholder="Apartment, studio, or floor" value={address2} />
+                            <Form.Control placeholder="Apartment, studio, or floor" value={house && house.address2} />
                         </Form.Group>
 
                         <Row className="mb-3">
                             <Form.Group as={Col} controlId="formGridCity" onChange={onCityChange}>
                                 <Form.Label>City</Form.Label>
-                                <Form.Control value={city}/>
+                                <Form.Control value={house && house.city}/>
                             </Form.Group>
 
                             <Form.Group as={Col} controlId="formGridState" onChange={onStateChange}>
                                 <Form.Label>State</Form.Label>
-                                <Form.Select defaultValue="Choose..." value={state}>
+                                <Form.Select defaultValue="Choose..." value={house && house.state}>
                                     <option value="FL">FL</option>
                                     <option value="GA">GA</option>
                                     <option value="AL">AL</option>
@@ -116,7 +120,7 @@ export const AddListingModal = ({ id }: {id?: string}): JSX.Element => {
 
                             <Form.Group as={Col} controlId="formGridZip" onChange={onZipChange}>
                                 <Form.Label>Zip</Form.Label>
-                                <Form.Control value={zip} />
+                                <Form.Control value={house && house.zip} />
                             </Form.Group>
 
 
@@ -126,8 +130,8 @@ export const AddListingModal = ({ id }: {id?: string}): JSX.Element => {
                             <Form.Label>Add Images</Form.Label>
                             <Form.Control type="file" multiple onChange={onImagesChange} accept="image/png, image/jpg"/>
                         </Form.Group>
-                        <img src={myImg}/>
                     </Form>
+                    <PicturesPreview pictures={house && house.images}/>
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose}>
@@ -141,9 +145,4 @@ export const AddListingModal = ({ id }: {id?: string}): JSX.Element => {
         </>
 
     )
-}
-
-
-interface ListModal {
-    showing: boolean;
-}
+};

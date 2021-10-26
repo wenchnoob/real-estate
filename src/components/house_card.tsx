@@ -7,6 +7,11 @@ import app from '../scripts/firebase';
 export const StyledCard = styled(Card)`
     min-width: 15rem;
     margin: 10px;
+
+    &:hover {
+        transform: scale(1.5);
+        z-index: 99
+    };
 `;
 
 
