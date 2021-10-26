@@ -61,9 +61,9 @@ export const AddListingModal = ({ id }: {id?: string}): JSX.Element => {
             images: house && house.images ? [...house.images, ...newImgs] : newImgs,
         } as House));
     }
-
+    
+    const { data , error } = useSWR('/api/house/'+id, (url) => fetch(url).then((res) => res.json()));
     if (id) {
-        const { data , error } = useSWR('/api/house/'+id, (url) => fetch(url).then((res) => res.json()));
         if (error) return <div>Server Error</div>
         if (!data) return <></>
         if (!house) setHouse(data.house);

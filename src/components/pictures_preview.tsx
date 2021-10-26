@@ -5,14 +5,12 @@ import Image from 'next/image';
 
 const PicturesPreview = ({ pictures }: PicturesPreviewProps) => {
     if (!pictures) return <></>;
-    
-    console.log(pictures);
 
     return (
         <div>
             <CardGroup>
                 {pictures.map((picture: string, idx: number) => (
-                    <Card id={`${idx}`}><Image src={picture} width={80} height={45}></Image></Card>
+                    <Card key={`${idx}`}><Image src={picture} width={80} height={45} alt=''></Image></Card>
                 ))}
             </CardGroup>
         </div>
