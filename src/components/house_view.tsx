@@ -1,12 +1,11 @@
 import styled from "styled-components";
 import { CardGroup, Col, Container, Row } from "react-bootstrap";
 import React from "react";
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import { AddListingModal } from "./add_listing_modal";
-import { getDatabase, ref, get, set, child } from 'firebase/database';
-import app from '../scripts/firebase';
 import HouseCard from "./house_card";
-import useSWR from 'swr';
+import { getAllHouses } from '../scripts/data';
+import { House } from '../scripts/types';
 
 export const StyledContainer = styled(Container)`
     margin-top: 3rem;
@@ -19,10 +18,10 @@ const HouseView = ({ isAdmin, edit }: {
     isAdmin?: boolean;
     edit?: string;
 }) => {
-    const { data , error } = useSWR('/api/houses', (url) => fetch(url).then((res) => res.json()));
-    if (error) return <div>Server Error</div>
-    if (!data) return <></>
-    const { houses } = data;
+    const [houses, setHouses] = useState([] as House[]);
+
+    useEffect(() => {getAllHouses().then((hs) => setHouses(hs));
+    }, []);
 
     return (
         <>
@@ -42,7 +41,7 @@ const HouseView = ({ isAdmin, edit }: {
                                 const cols = [];
                                 for (var i = 0; i < houses.length; i++) cols.push(
                                     <Col>
-                                        <HouseCard isAdmin={isAdmin} {...houses[i]} />
+                                        <HouseCard isAdmin={isAdmin || false} {...houses[i]} />
                                     </Col>
                                 );
                                 return cols;

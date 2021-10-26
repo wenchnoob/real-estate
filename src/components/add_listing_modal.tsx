@@ -9,6 +9,7 @@ import { House } from '../scripts/types';
 import PicturesPreview from './pictures_preview';
 import { readImg } from '../scripts/utils';
 import image from 'next/image';
+import { getHouse } from '../scripts/data';
 
 export const AddListingModal = ({ id }: {id?: string}): JSX.Element => {
 
@@ -61,12 +62,10 @@ export const AddListingModal = ({ id }: {id?: string}): JSX.Element => {
             images: house && house.images ? [...house.images, ...newImgs] : newImgs,
         } as House));
     }
-    
-    const { data , error } = useSWR('/api/house/'+id, (url) => fetch(url).then((res) => res.json()));
+
     if (id) {
-        if (error) return <div>Server Error</div>
-        if (!data) return <></>
-        if (!house) setHouse(data.house);
+        if (house === undefined)
+            getHouse(id).then((h: House) => setHouse(h));
     }
 
     const handleSubmit = () => {
@@ -111,7 +110,7 @@ export const AddListingModal = ({ id }: {id?: string}): JSX.Element => {
 
                             <Form.Group as={Col} controlId="formGridState" onChange={onStateChange}>
                                 <Form.Label>State</Form.Label>
-                                <Form.Select defaultValue="Choose..." value={house && house.state}>
+                                <Form.Select value={house && house.state}>
                                     <option value="FL">FL</option>
                                     <option value="GA">GA</option>
                                     <option value="AL">AL</option>

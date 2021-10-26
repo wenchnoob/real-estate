@@ -17,8 +17,10 @@ export const StyledCard = styled(Card)`
 
 export interface HouseCardInterface {
     isAdmin: boolean,
+    img?: string,
     id: string,
-    img: string,
+    main_img: string,
+    images: string[],
     address: string,
     address2: string,
     city: string,
@@ -26,13 +28,13 @@ export interface HouseCardInterface {
     zip: string,
 };
 
-const HouseCard = ({isAdmin, id, img, address, address2, city, state, zip}: HouseCardInterface) => {
+const HouseCard = ({isAdmin, id, img, main_img, address, address2, city, state, zip}: HouseCardInterface) => {
     const table = 'houses/';
     const db = getDatabase(app);
 
     return (
         <StyledCard>
-        <Card.Img variant="top" src={img}/>
+        <Card.Img variant="top" src={img || main_img}/>
         <Card.Body>
             <Card.Title>{address}, {address2}</Card.Title>
             <Card.Text>
