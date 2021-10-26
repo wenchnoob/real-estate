@@ -26,9 +26,11 @@ export interface HouseCardInterface {
     city: string,
     state: string,
     zip: string,
+    showModal: () => void;
+    setId: (arg0: string) => void;
 };
 
-const HouseCard = ({isAdmin, id, img, main_img, address, address2, city, state, zip}: HouseCardInterface) => {
+const HouseCard = ({isAdmin, id, img, main_img, address, address2, city, state, zip, showModal, setId}: HouseCardInterface) => {
     const table = 'houses/';
     const db = getDatabase(app);
 
@@ -46,7 +48,10 @@ const HouseCard = ({isAdmin, id, img, main_img, address, address2, city, state, 
                     <Button style={{marginLeft: 10, marginRight: 10,}} onClick={() => {
                     window.location.replace(`/house/${id}`);
                 }}>View</Button>
-                    <Button style={{marginLeft: 10, marginRight: 10,}} onClick={() => {window.location.replace('/admin?edit='+id)}}>Edit</Button>
+                    <Button style={{marginLeft: 10, marginRight: 10,}} onClick={() => {
+                        setId(id);
+                        showModal();
+                    }}>Edit</Button>
                     <Button style={{marginLeft: 10, marginRight: 10,}} onClick={() => {
                         set(ref(db, table+id), null).then(() => {window.location.reload()});
                     }

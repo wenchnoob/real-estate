@@ -6,6 +6,8 @@ import { AddListingModal } from "./add_listing_modal";
 import HouseCard from "./house_card";
 import { getAllHouses } from '../scripts/data';
 import { House } from '../scripts/types';
+import { getHouse } from '../scripts/data';
+
 
 export const StyledContainer = styled(Container)`
     margin-top: 3rem;
@@ -14,11 +16,13 @@ export const StyledContainer = styled(Container)`
 `;
 
 
-const HouseView = ({ isAdmin, edit }: {
+const HouseView = ({ isAdmin = false, edit = undefined }: {
     isAdmin?: boolean;
     edit?: string;
 }) => {
     const [houses, setHouses] = useState([] as House[]);
+    const [show, setShow] = useState(false);
+    const [id, setId] = useState('');
 
     useEffect(() => {getAllHouses().then((hs) => setHouses(hs));
     }, []);
@@ -29,7 +33,7 @@ const HouseView = ({ isAdmin, edit }: {
 
                 {isAdmin ?
                     <div>
-                        <AddListingModal id={edit}/>
+                        <AddListingModal getId={() => id} show={show} setShow={(b: boolean) => setShow(b)}/>
                     </div>
                     :
                     <></>
@@ -41,7 +45,7 @@ const HouseView = ({ isAdmin, edit }: {
                                 const cols = [];
                                 for (var i = 0; i < houses.length; i++) cols.push(
                                     <Col>
-                                        <HouseCard isAdmin={isAdmin || false} {...houses[i]} />
+                                        <HouseCard isAdmin={isAdmin || false} {...houses[i]} setId={setId} showModal={() => setShow(true)}/>
                                     </Col>
                                 );
                                 return cols;
