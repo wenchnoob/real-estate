@@ -1,10 +1,7 @@
 import React from "react";
-import { useState, useEffect } from "react";
-import { getDatabase, ref, get, set, child } from 'firebase/database';
-import app from '../../src/scripts/firebase';
-import { CardGroup, Col, Container, Row } from "react-bootstrap";
-import HouseCard from '../../src/components/house_card';
+import {Card, CardGroup, Col, Container, Row} from "react-bootstrap";
 import { useRouter } from "next/router";
+import ScrollablePictures from '../../src/components/scrollable_pics';
 
 import useSWR from 'swr';
 
@@ -18,14 +15,15 @@ const House = () => {
 
     return (
         <Container style={{
+            marginTop: '5rem',
             width: '50%',
             height: '50%',
         }}>
-            <Row>
-                <Col>
-                    <HouseCard isAdmin={false} {...house} />
-                </Col>
-            </Row>
+            <ScrollablePictures images={house.images}/>
+            <div>
+                <span>{house.address}, {house.address2}</span>
+                <span>{house.city}, {house.state}, {house.zip}</span>
+            </div>
         </Container>
     );
 }
