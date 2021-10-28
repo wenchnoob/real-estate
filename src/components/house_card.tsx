@@ -30,13 +30,13 @@ export interface HouseCardInterface {
     setId: (arg0: string) => void;
 };
 
-const HouseCard = ({isAdmin, id, img, main_img, address, address2, city, state, zip, showModal, setId}: HouseCardInterface) => {
+const HouseCard = ({isAdmin, id, img, main_img, images, address, address2, city, state, zip, showModal, setId}: HouseCardInterface) => {
     const table = 'houses/';
     const db = getDatabase(app);
 
     return (
         <StyledCard>
-        <Card.Img variant="top" src={img || main_img}/>
+        <Card.Img variant="top" src={img || main_img || images && images[0]}/>
         <Card.Body>
             <Card.Title>{address}, {address2}</Card.Title>
             <Card.Text>

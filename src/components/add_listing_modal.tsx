@@ -11,18 +11,26 @@ import { readImg } from '../scripts/utils';
 import image from 'next/image';
 import { getHouse } from '../scripts/data';
 
-export const AddListingModal = ({ getId, show, setShow }: { getId: () => string, show: boolean, setShow: (arg0: boolean) => void }): JSX.Element => {
+export const AddListingModal = ({ resetId, getId, show, setShow }: { resetId: (arg0: string) => void, getId: () => string, show: boolean, setShow: (arg0: boolean) => void }): JSX.Element => {
 
     const table = 'houses/';
     const db = getDatabase(app);
 
-    const [loaded, setLoaded] = useState(false);
-    const handleShow = () => setShow(true);
+    
     const handleClose = () => setShow(false);
 
     const [house, setHouse]: [House | undefined, Dispatch<SetStateAction<House | undefined>>] = useState();
 
-
+    const handleShow = () => {
+        resetId('');
+        setShow(true);
+        setHouse(undefined);
+    };
+    
+    const onPriceChange = ({ target: { value } }: { target: any }) => setHouse({
+        ...house,
+        listed_price: value,
+    } as House);
     const onAddressChange = ({ target: { value } }: { target: any }) => setHouse({
         ...house,
         address: value,
@@ -43,6 +51,41 @@ export const AddListingModal = ({ getId, show, setShow }: { getId: () => string,
         ...house,
         zip: value,
     } as House);
+    const onSqFootageChange = ({ target: { value } }: { target: any }) => setHouse({
+        ...house,
+        sq_footage: value,
+    } as House);
+    const onAmountOfBedroomsChange = ({ target: { value } }: { target: any }) => setHouse({
+        ...house,
+        amount_of_bedrooms: value,
+    } as House);
+    const onAmountOfBathroomsChange = ({ target: { value } }: { target: any }) => setHouse({
+        ...house,
+        amount_of_bathrooms: value,
+    } as House);
+    const onYearBuiltChange = ({ target: { value } }: { target: any }) => setHouse({
+        ...house,
+        year_built: value,
+    } as House);
+    const onLongDescriptionChange = ({ target: { value } }: { target: any }) => setHouse({
+        ...house,
+        long_desc: value,
+    } as House);
+
+    const onImageChange = ({ target: { files } }: { target: any }) => {
+        if (!files) return;
+        if (!files[0]) return;
+
+        const readFiles = async (files: any[]) => {
+            const tmp = await readImg(files[0]);
+            return tmp;
+        };
+
+        readFiles(files).then((newImg) => setHouse({
+            ...house,
+            main_img: newImg,
+        } as House));
+    }
 
     const onImagesChange = ({ target: { files } }: { target: any }) => {
         if (!files) return;
@@ -86,14 +129,18 @@ export const AddListingModal = ({ getId, show, setShow }: { getId: () => string,
                 if (id) {
                     if (house === undefined || house.id != id)
                         getHouse(id).then((h: House) => setHouse(h));
-                    setLoaded(true);
                 }
             }}>
                 <Modal.Header closeButton>
-                    <Modal.Title>{getId() ? 'Add a Listing' : 'Edit a listing'}</Modal.Title>
+                    <Modal.Title>{getId() === '' ? 'Add a Listing' : 'Edit a listing'}</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <Form>
+                        <Form.Group className="mb-3" controlId="formGridPrice" onChange={onPriceChange}>
+                            <Form.Label>Price</Form.Label>
+                            <Form.Control type="number" placeholder="" value={house && house.listed_price} />
+                        </Form.Group>
+
                         <Form.Group className="mb-3" controlId="formGridAddress1" onChange={onAddressChange}>
                             <Form.Label>Address</Form.Label>
                             <Form.Control placeholder="1234 Main St" value={house && house.address} />
@@ -123,13 +170,40 @@ export const AddListingModal = ({ getId, show, setShow }: { getId: () => string,
                                 <Form.Label>Zip</Form.Label>
                                 <Form.Control value={house && house.zip} />
                             </Form.Group>
-
-
                         </Row>
+
+                        <Form.Group className="mb-3" controlId="formGridSqFootage" onChange={onSqFootageChange}>
+                            <Form.Label>Square Footage</Form.Label>
+                            <Form.Control type="number" placeholder="" value={house && house.sq_footage} />
+                        </Form.Group>
+
+                        <Row>
+                            <Form.Group className="mb-3" controlId="formGridSqFootage" onChange={onAmountOfBedroomsChange}>
+                                <Form.Label>Amount of Bedrooms</Form.Label>
+                                <Form.Control type="number" placeholder="" value={house && house.amount_of_bedrooms} />
+                            </Form.Group>
+                            <Form.Group className="mb-3" controlId="formGridSqFootage" onChange={onAmountOfBathroomsChange}>
+                                <Form.Label>Amount of Bathrooms</Form.Label>
+                                <Form.Control type="number" placeholder="" value={house && house.amount_of_bathrooms} />
+                            </Form.Group>
+                            <Form.Group className="mb-3" controlId="formGridSqFootage" onChange={onYearBuiltChange}>
+                                <Form.Label>Year Built</Form.Label>
+                                <Form.Control type="number" placeholder="" value={house && house.year_built} />
+                            </Form.Group>
+                        </Row>
+                        <Form.Group className="mb-3" controlId="formGridSqFootage" onChange={onLongDescriptionChange}>
+                            <Form.Label>Long Description</Form.Label>
+                            <Form.Control as="textarea" placeholder="" value={house && house.long_desc} />
+                        </Form.Group>
+
+                        <Form.Group controlId="formFileSingle" className="mb-3">
+                            <Form.Label>Add Main Image</Form.Label>
+                            <Form.Control type="file" onChange={onImageChange} accept="image/*" />
+                        </Form.Group>
 
                         <Form.Group controlId="formFileMultiple" className="mb-3">
                             <Form.Label>Add Images</Form.Label>
-                            <Form.Control type="file" multiple onChange={onImagesChange} accept="image/png, image/jpg" />
+                            <Form.Control type="file" multiple onChange={onImagesChange} accept="image/*" />
                         </Form.Group>
                     </Form>
                     <PicturesPreview pictures={house && house.images} />

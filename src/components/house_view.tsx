@@ -33,7 +33,7 @@ const HouseView = ({ isAdmin = false, edit = undefined }: {
 
                 {isAdmin ?
                     <div>
-                        <AddListingModal getId={() => id} show={show} setShow={(b: boolean) => setShow(b)}/>
+                        <AddListingModal resetId={setId} getId={() => id} show={show} setShow={(b: boolean) => setShow(b)}/>
                     </div>
                     :
                     <></>

@@ -1,0 +1,20 @@
+[debug] [2021-10-28T22:12:41.410Z] ----------------------------------------------------------------------
+[debug] [2021-10-28T22:12:41.413Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\wench\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js emulators:start
+[debug] [2021-10-28T22:12:41.414Z] CLI Version:   9.20.0
+[debug] [2021-10-28T22:12:41.414Z] Platform:      win32
+[debug] [2021-10-28T22:12:41.414Z] Node Version:  v16.3.0
+[debug] [2021-10-28T22:12:41.418Z] Time:          Thu Oct 28 2021 17:12:41 GMT-0500 (Central Daylight Time)
+[debug] [2021-10-28T22:12:41.418Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2021-10-28T22:12:41.423Z] >>> [apiv2][query] GET https://firebase-public.firebaseio.com/cli.json [none]
+[debug] [2021-10-28T22:12:41.544Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2021-10-28T22:12:41.545Z] > authorizing via signed-in user (wcdutreuil@gmail.com)
+[info] i  emulators: Starting emulators: firestore, database, hosting, storage {"metadata":{"emulator":{"name":"hub"},"message":"Starting emulators: firestore, database, hosting, storage"}}
+[warn] !  emulators: It seems that you are running multiple instances of the emulator suite for project real-estate-pg. This may result in unexpected behavior. 
+[debug] [2021-10-28T22:12:41.585Z] [hub] writing locator at C:\Users\wench\AppData\Local\Temp\hub-real-estate-pg.json
+[debug] [2021-10-28T22:12:41.625Z] Ignoring unsupported arg: projectId {"metadata":{"emulator":{"name":"firestore"},"message":"Ignoring unsupported arg: projectId"}}
+[debug] [2021-10-28T22:12:41.625Z] Ignoring unsupported arg: auto_download {"metadata":{"emulator":{"name":"firestore"},"message":"Ignoring unsupported arg: auto_download"}}
+[debug] [2021-10-28T22:12:41.626Z] Starting Firestore Emulator with command {"binary":"java","args":["-Dgoogle.cloud_firestore.debug_log_level=FINE","-Duser.language=en","-jar","C:\\Users\\wench\\.cache\\firebase\\emulators\\cloud-firestore-emulator-v1.13.1.jar","--host","localhost","--port",8080,"--rules","C:\\Users\\wench\\IdeaProjects\\house_listings\\firestore.rules"],"optionalArgs":["port","webchannel_port","host","rules","functions_emulator","seed_from_export"],"joinArgs":false} {"metadata":{"emulator":{"name":"firestore"},"message":"Starting Firestore Emulator with command {\"binary\":\"java\",\"args\":[\"-Dgoogle.cloud_firestore.debug_log_level=FINE\",\"-Duser.language=en\",\"-jar\",\"C:\\\\Users\\\\wench\\\\.cache\\\\firebase\\\\emulators\\\\cloud-firestore-emulator-v1.13.1.jar\",\"--host\",\"localhost\",\"--port\",8080,\"--rules\",\"C:\\\\Users\\\\wench\\\\IdeaProjects\\\\house_listings\\\\firestore.rules\"],\"optionalArgs\":[\"port\",\"webchannel_port\",\"host\",\"rules\",\"functions_emulator\",\"seed_from_export\"],\"joinArgs\":false}"}}
+[info] i  firestore: Firestore Emulator logging to firestore-debug.log {"metadata":{"emulator":{"name":"firestore"},"message":"Firestore Emulator logging to \u001b[1mfirestore-debug.log\u001b[22m"}}
+[debug] [2021-10-28T22:12:41.737Z] <<< [apiv2][status] GET https://firebase-public.firebaseio.com/cli.json 200
+[debug] [2021-10-28T22:12:41.738Z] <<< [apiv2][body] GET https://firebase-public.firebaseio.com/cli.json {"cloudBuildErrorAfter":1594252800000,"cloudBuildWarnAfter":1590019200000,"defaultNode10After":1594252800000,"minVersion":"3.0.5","node8DeploysDisabledAfter":1613390400000,"node8RuntimeDisabledAfter":1615809600000,"node8WarnAfter":1600128000000}

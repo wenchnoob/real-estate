@@ -13,6 +13,10 @@ const House = () => {
     if (!data) return <></>
     const { house } = data;
 
+
+    if (house.img) house.images.unshift(house.img);
+    if (house.main_img) house.images.unshift(house.main_img);
+
     return (
         <Container style={{
             marginTop: '5rem',
