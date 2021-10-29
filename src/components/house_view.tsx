@@ -45,7 +45,7 @@ const HouseView = ({ isAdmin = false, edit = undefined }: {
                                 const cols = [];
                                 for (var i = 0; i < houses.length; i++) cols.push(
                                     <Col>
-                                        <HouseCard isAdmin={isAdmin || false} {...houses[i]} setId={setId} showModal={() => setShow(true)}/>
+                                        <HouseCard key={i} isAdmin={isAdmin || false} {...houses[i]} setId={setId} showModal={() => setShow(true)}/>
                                     </Col>
                                 );
                                 return cols;

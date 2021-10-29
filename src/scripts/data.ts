@@ -13,7 +13,6 @@ if (process.env.NEXT_PUBLIC_LOCAL)
     }
 
 export const getAllHouses = () => {
-    console.log('local', db);
 
     return new Promise<House[]>(
         (resolve, reject) => {
