@@ -156,7 +156,7 @@ const LoginSignupModal = ({ show, setShow }: { show: boolean, setShow: (arg0: bo
 
 const LoginModal = ({ loginVisible, setLoginVisible, signUp = false }: { loginVisible: boolean, setLoginVisible: (arg0: boolean) => void, signUp?: boolean }) => {
 
-    const { user, signInWithEmail, setPermissions } = useAuth();
+    const { signUpWithEmail, signInWithEmail, setPermissions } = useAuth();
 
     const handleClose = () => { setLoginVisible(false) }
     const [username, setUsername] = useState('');
@@ -170,8 +170,7 @@ const LoginModal = ({ loginVisible, setLoginVisible, signUp = false }: { loginVi
     };
 
     const handleSubmit = async () => {
-        const user: User = await signInWithEmail(username, password);
-        setPermissions(user.uid, ['user', 'admin']);
+        const user: User = await signUp ? signUpWithEmail(username, password) : signInWithEmail(username, password);
         handleClose();
     };
 

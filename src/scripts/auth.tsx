@@ -68,6 +68,14 @@ function useProvideAuth() {
         return user;
     };
 
+    const signUpWithEmail = async (email: string, password: string) => {
+        const table = (uid: string) => `users/${uid}/roles`
+        const user = (await createUserWithEmailAndPassword(auth, email, password)).user;
+        const snap = await set(ref(db, table(user.uid)), ['user']);
+        setUser(user);
+        return user;
+    };
+
     const signout = () => {
         return signOut(auth).then(() => {
             setRoles(['user']);
@@ -93,5 +101,5 @@ function useProvideAuth() {
         return () => unsubscribe();
     }, [])
 
-    return { user, uid: (user as User).uid, signInWithEmail, signout, setPermissions, roles};
+    return { user, uid: (user as User).uid, signInWithEmail, signUpWithEmail, signout, setPermissions, roles};
 }
