@@ -15,9 +15,7 @@ export const CenteredContainer = styled.div`
 const Home: NextPage = () => {
     return (
         <>
-            <CenteredContainer>
-                <CaptionedPic/>
-            </CenteredContainer>
+             <CaptionedPic/>
         </>
     );
 };

@@ -1,14 +1,12 @@
 import React, { Dispatch, SetStateAction } from 'react'
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Modal, Button, Form, Row, Col } from 'react-bootstrap';
-import { Database, getDatabase, ref, set } from 'firebase/database';
+import { getDatabase, ref, set } from 'firebase/database';
 import app from '../scripts/firebase';
 import { v4 as uuidv4 } from 'uuid';
-import useSWR from 'swr';
-import { House } from '../scripts/types';
+import { HouseProps } from '../scripts/types';
 import PicturesPreview from './pictures_preview';
 import { readImg } from '../scripts/utils';
-import image from 'next/image';
 import { getHouse } from '../scripts/data';
 
 export const AddListingModal = ({ resetId, getId, show, setShow }: { resetId: (arg0: string) => void, getId: () => string, show: boolean, setShow: (arg0: boolean) => void }): JSX.Element => {
@@ -19,7 +17,7 @@ export const AddListingModal = ({ resetId, getId, show, setShow }: { resetId: (a
     
     const handleClose = () => setShow(false);
 
-    const [house, setHouse]: [House | undefined, Dispatch<SetStateAction<House | undefined>>] = useState();
+    const [house, setHouse]: [HouseProps | undefined, Dispatch<SetStateAction<HouseProps | undefined>>] = useState();
 
     const handleShow = () => {
         resetId('');
@@ -30,47 +28,47 @@ export const AddListingModal = ({ resetId, getId, show, setShow }: { resetId: (a
     const onPriceChange = ({ target: { value } }: { target: any }) => setHouse({
         ...house,
         listed_price: value,
-    } as House);
+    } as HouseProps);
     const onAddressChange = ({ target: { value } }: { target: any }) => setHouse({
         ...house,
         address: value,
-    } as House);
+    } as HouseProps);
     const onAddress2Change = ({ target: { value } }: { target: any }) => setHouse({
         ...house,
         address2: value,
-    } as House);
+    } as HouseProps);
     const onCityChange = ({ target: { value } }: { target: any }) => setHouse({
         ...house,
         city: value,
-    } as House);
+    } as HouseProps);
     const onStateChange = ({ target: { value } }: { target: any }) => setHouse({
         ...house,
         state: value,
-    } as House);
+    } as HouseProps);
     const onZipChange = ({ target: { value } }: { target: any }) => setHouse({
         ...house,
         zip: value,
-    } as House);
+    } as HouseProps);
     const onSqFootageChange = ({ target: { value } }: { target: any }) => setHouse({
         ...house,
         sq_footage: value,
-    } as House);
+    } as HouseProps);
     const onAmountOfBedroomsChange = ({ target: { value } }: { target: any }) => setHouse({
         ...house,
         amount_of_bedrooms: value,
-    } as House);
+    } as HouseProps);
     const onAmountOfBathroomsChange = ({ target: { value } }: { target: any }) => setHouse({
         ...house,
         amount_of_bathrooms: value,
-    } as House);
+    } as HouseProps);
     const onYearBuiltChange = ({ target: { value } }: { target: any }) => setHouse({
         ...house,
         year_built: value,
-    } as House);
+    } as HouseProps);
     const onLongDescriptionChange = ({ target: { value } }: { target: any }) => setHouse({
         ...house,
         long_desc: value,
-    } as House);
+    } as HouseProps);
 
     const onImageChange = ({ target: { files } }: { target: any }) => {
         if (!files) return;
@@ -84,7 +82,7 @@ export const AddListingModal = ({ resetId, getId, show, setShow }: { resetId: (a
         readFiles(files).then((newImg) => setHouse({
             ...house,
             main_img: newImg,
-        } as House));
+        } as HouseProps));
     }
 
     const onImagesChange = ({ target: { files } }: { target: any }) => {
@@ -103,7 +101,7 @@ export const AddListingModal = ({ resetId, getId, show, setShow }: { resetId: (a
         readFiles(files).then((newImgs) => setHouse({
             ...house,
             images: house && house.images ? [...house.images, ...newImgs] : newImgs,
-        } as House));
+        } as HouseProps));
     }
 
     const handleSubmit = (id: string) => {
@@ -128,7 +126,7 @@ export const AddListingModal = ({ resetId, getId, show, setShow }: { resetId: (a
                 let id = getId();
                 if (id) {
                     if (house === undefined || house.id != id)
-                        getHouse(id).then((h: House) => setHouse(h));
+                        getHouse(id).then((h: HouseProps) => setHouse(h));
                 }
             }}>
                 <Modal.Header closeButton>

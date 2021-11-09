@@ -1,21 +1,19 @@
 import React from "react";
+import { useState, useEffect } from "react";
 import {Card, CardGroup, Col, Container, Row} from "react-bootstrap";
 import { useRouter } from "next/router";
 import ScrollablePictures from '../../src/components/scrollable_pics';
+import { HouseProps } from '../../src/scripts/types';
+import { getHouse } from '../../src/scripts/data';
 
-import useSWR from 'swr';
 
 const House = () => {
     const router = useRouter();
     const id = router.query['id'];
-    const { data, error } = useSWR('/api/house/' + id, (url) => fetch(url).then((res) => res.json()));
-    if (error) return <div>Server Error</div>
-    if (!data) return <></>
-    const { house } = data;
+    const [house, setHouse] = useState({} as HouseProps);
 
-
-    if (house.img) house.images.unshift(house.img);
-    if (house.main_img) house.images.unshift(house.main_img);
+    useEffect(() => {getHouse(id as string).then((hs) => setHouse(hs));
+    }, [id]);
 
     return (
         <Container style={{
@@ -23,7 +21,7 @@ const House = () => {
             width: '50%',
             height: '50%',
         }}>
-            <ScrollablePictures images={house.images}/>
+            {house.images ? <ScrollablePictures images={house.images}/> : <span>No Images</span>}
             <div>
                 <span>{house.address}, {house.address2}</span>
                 <span>{house.city}, {house.state}, {house.zip}</span>

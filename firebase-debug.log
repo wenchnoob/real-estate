@@ -1,20 +1,78 @@
-[debug] [2021-10-28T22:12:41.410Z] ----------------------------------------------------------------------
-[debug] [2021-10-28T22:12:41.413Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\wench\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js emulators:start
-[debug] [2021-10-28T22:12:41.414Z] CLI Version:   9.20.0
-[debug] [2021-10-28T22:12:41.414Z] Platform:      win32
-[debug] [2021-10-28T22:12:41.414Z] Node Version:  v16.3.0
-[debug] [2021-10-28T22:12:41.418Z] Time:          Thu Oct 28 2021 17:12:41 GMT-0500 (Central Daylight Time)
-[debug] [2021-10-28T22:12:41.418Z] ----------------------------------------------------------------------
+[debug] [2021-11-09T11:34:36.934Z] ----------------------------------------------------------------------
+[debug] [2021-11-09T11:34:36.936Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\wench\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js emulators:start
+[debug] [2021-11-09T11:34:36.936Z] CLI Version:   9.20.0
+[debug] [2021-11-09T11:34:36.936Z] Platform:      win32
+[debug] [2021-11-09T11:34:36.936Z] Node Version:  v16.3.0
+[debug] [2021-11-09T11:34:36.945Z] Time:          Tue Nov 09 2021 05:34:36 GMT-0600 (Central Standard Time)
+[debug] [2021-11-09T11:34:36.945Z] ----------------------------------------------------------------------
 [debug] 
-[debug] [2021-10-28T22:12:41.423Z] >>> [apiv2][query] GET https://firebase-public.firebaseio.com/cli.json [none]
-[debug] [2021-10-28T22:12:41.544Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
-[debug] [2021-10-28T22:12:41.545Z] > authorizing via signed-in user (wcdutreuil@gmail.com)
-[info] i  emulators: Starting emulators: firestore, database, hosting, storage {"metadata":{"emulator":{"name":"hub"},"message":"Starting emulators: firestore, database, hosting, storage"}}
-[warn] !  emulators: It seems that you are running multiple instances of the emulator suite for project real-estate-pg. This may result in unexpected behavior. 
-[debug] [2021-10-28T22:12:41.585Z] [hub] writing locator at C:\Users\wench\AppData\Local\Temp\hub-real-estate-pg.json
-[debug] [2021-10-28T22:12:41.625Z] Ignoring unsupported arg: projectId {"metadata":{"emulator":{"name":"firestore"},"message":"Ignoring unsupported arg: projectId"}}
-[debug] [2021-10-28T22:12:41.625Z] Ignoring unsupported arg: auto_download {"metadata":{"emulator":{"name":"firestore"},"message":"Ignoring unsupported arg: auto_download"}}
-[debug] [2021-10-28T22:12:41.626Z] Starting Firestore Emulator with command {"binary":"java","args":["-Dgoogle.cloud_firestore.debug_log_level=FINE","-Duser.language=en","-jar","C:\\Users\\wench\\.cache\\firebase\\emulators\\cloud-firestore-emulator-v1.13.1.jar","--host","localhost","--port",8080,"--rules","C:\\Users\\wench\\IdeaProjects\\house_listings\\firestore.rules"],"optionalArgs":["port","webchannel_port","host","rules","functions_emulator","seed_from_export"],"joinArgs":false} {"metadata":{"emulator":{"name":"firestore"},"message":"Starting Firestore Emulator with command {\"binary\":\"java\",\"args\":[\"-Dgoogle.cloud_firestore.debug_log_level=FINE\",\"-Duser.language=en\",\"-jar\",\"C:\\\\Users\\\\wench\\\\.cache\\\\firebase\\\\emulators\\\\cloud-firestore-emulator-v1.13.1.jar\",\"--host\",\"localhost\",\"--port\",8080,\"--rules\",\"C:\\\\Users\\\\wench\\\\IdeaProjects\\\\house_listings\\\\firestore.rules\"],\"optionalArgs\":[\"port\",\"webchannel_port\",\"host\",\"rules\",\"functions_emulator\",\"seed_from_export\"],\"joinArgs\":false}"}}
+[debug] [2021-11-09T11:34:36.998Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2021-11-09T11:34:36.999Z] > authorizing via signed-in user (wcdutreuil@gmail.com)
+[info] i  emulators: Starting emulators: auth, firestore, database, hosting, storage {"metadata":{"emulator":{"name":"hub"},"message":"Starting emulators: auth, firestore, database, hosting, storage"}}
+[debug] [2021-11-09T11:34:37.026Z] [hub] writing locator at C:\Users\wench\AppData\Local\Temp\hub-real-estate-pg.json
+[debug] [2021-11-09T11:34:37.063Z] Ignoring unsupported arg: projectId {"metadata":{"emulator":{"name":"firestore"},"message":"Ignoring unsupported arg: projectId"}}
+[debug] [2021-11-09T11:34:37.063Z] Ignoring unsupported arg: auto_download {"metadata":{"emulator":{"name":"firestore"},"message":"Ignoring unsupported arg: auto_download"}}
+[debug] [2021-11-09T11:34:37.063Z] Starting Firestore Emulator with command {"binary":"java","args":["-Dgoogle.cloud_firestore.debug_log_level=FINE","-Duser.language=en","-jar","C:\\Users\\wench\\.cache\\firebase\\emulators\\cloud-firestore-emulator-v1.13.1.jar","--host","localhost","--port",8080,"--rules","C:\\Users\\wench\\IdeaProjects\\house_listings\\firestore.rules"],"optionalArgs":["port","webchannel_port","host","rules","functions_emulator","seed_from_export"],"joinArgs":false} {"metadata":{"emulator":{"name":"firestore"},"message":"Starting Firestore Emulator with command {\"binary\":\"java\",\"args\":[\"-Dgoogle.cloud_firestore.debug_log_level=FINE\",\"-Duser.language=en\",\"-jar\",\"C:\\\\Users\\\\wench\\\\.cache\\\\firebase\\\\emulators\\\\cloud-firestore-emulator-v1.13.1.jar\",\"--host\",\"localhost\",\"--port\",8080,\"--rules\",\"C:\\\\Users\\\\wench\\\\IdeaProjects\\\\house_listings\\\\firestore.rules\"],\"optionalArgs\":[\"port\",\"webchannel_port\",\"host\",\"rules\",\"functions_emulator\",\"seed_from_export\"],\"joinArgs\":false}"}}
 [info] i  firestore: Firestore Emulator logging to firestore-debug.log {"metadata":{"emulator":{"name":"firestore"},"message":"Firestore Emulator logging to \u001b[1mfirestore-debug.log\u001b[22m"}}
-[debug] [2021-10-28T22:12:41.737Z] <<< [apiv2][status] GET https://firebase-public.firebaseio.com/cli.json 200
-[debug] [2021-10-28T22:12:41.738Z] <<< [apiv2][body] GET https://firebase-public.firebaseio.com/cli.json {"cloudBuildErrorAfter":1594252800000,"cloudBuildWarnAfter":1590019200000,"defaultNode10After":1594252800000,"minVersion":"3.0.5","node8DeploysDisabledAfter":1613390400000,"node8RuntimeDisabledAfter":1615809600000,"node8WarnAfter":1600128000000}
+[debug] [2021-11-09T11:34:38.350Z] > refreshing access token with scopes: []
+[debug] [2021-11-09T11:34:38.351Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2021-11-09T11:34:38.465Z] <<< HTTP RESPONSE 200 {"date":"Tue, 09 Nov 2021 11:34:38 GMT","pragma":"no-cache","cache-control":"no-cache, no-store, max-age=0, must-revalidate","expires":"Mon, 01 Jan 1990 00:00:00 GMT","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-11-09T11:34:38.477Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/real-estate-pg [none]
+[debug] [2021-11-09T11:34:38.747Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/real-estate-pg 200
+[debug] [2021-11-09T11:34:38.748Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/real-estate-pg {"projectId":"real-estate-pg","projectNumber":"630835040616","displayName":"real-estate-pg","name":"projects/real-estate-pg","resources":{"hostingSite":"real-estate-pg","realtimeDatabaseInstance":"real-estate-pg-default-rtdb","storageBucket":"real-estate-pg.appspot.com","locationId":"us-central"},"state":"ACTIVE"}
+[debug] [2021-11-09T11:34:38.748Z] database rules config:  [{"instance":"real-estate-pg-default-rtdb","rules":"C:\\Users\\wench\\IdeaProjects\\house_listings\\database.rules.json"}]
+[debug] [2021-11-09T11:34:38.750Z] Ignoring unsupported arg: projectId {"metadata":{"emulator":{"name":"database"},"message":"Ignoring unsupported arg: projectId"}}
+[debug] [2021-11-09T11:34:38.750Z] Ignoring unsupported arg: auto_download {"metadata":{"emulator":{"name":"database"},"message":"Ignoring unsupported arg: auto_download"}}
+[debug] [2021-11-09T11:34:38.750Z] Ignoring unsupported arg: rules {"metadata":{"emulator":{"name":"database"},"message":"Ignoring unsupported arg: rules"}}
+[debug] [2021-11-09T11:34:38.750Z] Starting Database Emulator with command {"binary":"java","args":["-Duser.language=en","-jar","C:\\Users\\wench\\.cache\\firebase\\emulators\\firebase-database-emulator-v4.7.2.jar","--host","localhost","--port",9000],"optionalArgs":["port","host","functions_emulator_port","functions_emulator_host"],"joinArgs":false} {"metadata":{"emulator":{"name":"database"},"message":"Starting Database Emulator with command {\"binary\":\"java\",\"args\":[\"-Duser.language=en\",\"-jar\",\"C:\\\\Users\\\\wench\\\\.cache\\\\firebase\\\\emulators\\\\firebase-database-emulator-v4.7.2.jar\",\"--host\",\"localhost\",\"--port\",9000],\"optionalArgs\":[\"port\",\"host\",\"functions_emulator_port\",\"functions_emulator_host\"],\"joinArgs\":false}"}}
+[info] i  database: Database Emulator logging to database-debug.log {"metadata":{"emulator":{"name":"database"},"message":"Database Emulator logging to \u001b[1mdatabase-debug.log\u001b[22m"}}
+[debug] [2021-11-09T11:34:46.051Z] Ignoring unsupported arg: port {"metadata":{"emulator":{"name":"storage"},"message":"Ignoring unsupported arg: port"}}
+[debug] [2021-11-09T11:34:46.297Z] Temp file directory for storage emulator: C:\Users\wench\AppData\Local\Temp/firebase/storage/blobs {"metadata":{"emulator":{"name":"storage"},"message":"Temp file directory for storage emulator: C:\\Users\\wench\\AppData\\Local\\Temp/firebase/storage/blobs"}}
+[debug] [2021-11-09T11:34:47.340Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/real-estate-pg/sites 
+[debug] [2021-11-09T11:34:47.555Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/real-estate-pg/sites 200
+[debug] [2021-11-09T11:34:47.555Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/real-estate-pg/sites {"sites":[{"name":"projects/630835040616/sites/real-estate-pg","defaultUrl":"https://real-estate-pg.web.app","type":"DEFAULT_SITE"}]}
+[debug] [2021-11-09T11:34:47.555Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/real-estate-pg/webApps/-/config [none]
+[debug] [2021-11-09T11:34:47.883Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/real-estate-pg/webApps/-/config 200
+[debug] [2021-11-09T11:34:47.883Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/real-estate-pg/webApps/-/config {"projectId":"real-estate-pg","appId":"1:630835040616:web:9be6ff139ff76c5efa46dd","databaseURL":"https://real-estate-pg-default-rtdb.firebaseio.com","storageBucket":"real-estate-pg.appspot.com","locationId":"us-central","apiKey":"AIzaSyAVW0FCjtnDjm5bVvGtLcLu3gGbwZ96P0E","authDomain":"real-estate-pg.firebaseapp.com","messagingSenderId":"630835040616","measurementId":"G-0H1ZM7Q16Z"}
+[info] i  hosting: Serving hosting files from: .next {"metadata":{"emulator":{"name":"hosting"},"message":"Serving hosting files from: \u001b[1m.next\u001b[22m"}}
+[info] +  hosting: Local server: http://localhost:5000 {"metadata":{"emulator":{"name":"hosting"},"message":"Local server: \u001b[4m\u001b[1mhttp://localhost:5000\u001b[22m\u001b[24m"}}
+[debug] [2021-11-09T11:34:47.915Z] Ignoring unsupported arg: auto_download {"metadata":{"emulator":{"name":"ui"},"message":"Ignoring unsupported arg: auto_download"}}
+[debug] [2021-11-09T11:34:47.915Z] Ignoring unsupported arg: port {"metadata":{"emulator":{"name":"ui"},"message":"Ignoring unsupported arg: port"}}
+[debug] [2021-11-09T11:34:47.915Z] Starting Emulator UI with command {"binary":"node","args":["C:\\Users\\wench\\.cache\\firebase\\emulators\\ui-v1.6.3\\server.bundle.js"],"optionalArgs":[],"joinArgs":false} {"metadata":{"emulator":{"name":"ui"},"message":"Starting Emulator UI with command {\"binary\":\"node\",\"args\":[\"C:\\\\Users\\\\wench\\\\.cache\\\\firebase\\\\emulators\\\\ui-v1.6.3\\\\server.bundle.js\"],\"optionalArgs\":[],\"joinArgs\":false}"}}
+[info] i  ui: Emulator UI logging to ui-debug.log {"metadata":{"emulator":{"name":"ui"},"message":"Emulator UI logging to \u001b[1mui-debug.log\u001b[22m"}}
+[debug] [2021-11-09T11:34:48.040Z] Web / API server started at localhost:4000
+ {"metadata":{"emulator":{"name":"ui"},"message":"Web / API server started at localhost:4000\n"}}
+[debug] [2021-11-09T11:34:48.184Z] >>> HTTP REQUEST PUT http://localhost:9000/.settings/rules.json?ns=real-estate-pg-default-rtdb  
+ {
+  /* Visit https://firebase.google.com/docs/database/security to learn more about security rules. */
+  "rules": {
+    ".read": true,
+    ".write": true
+  }
+}
+[debug] [2021-11-09T11:34:48.677Z] <<< HTTP RESPONSE 200 {"content-length":"15","content-type":"application/json; charset=utf-8","access-control-allow-origin":"*","cache-control":"no-cache","x-firebase-project-id":"real-estate-pg-default-rtdb","x-firebase-project-number":"123456789","x-firebase-uuid":"b25d24f3-269e-45bc-bfc9-5b9f34879dc3"}
+[info] 
+┌─────────────────────────────────────────────────────────────┐
+│ ✔  All emulators ready! It is now safe to connect your app. │
+│ i  View Emulator UI at http://localhost:4000                │
+└─────────────────────────────────────────────────────────────┘
+
+┌────────────────┬────────────────┬─────────────────────────────────┐
+│ Emulator       │ Host:Port      │ View in Emulator UI             │
+├────────────────┼────────────────┼─────────────────────────────────┤
+│ Authentication │ localhost:9099 │ http://localhost:4000/auth      │
+├────────────────┼────────────────┼─────────────────────────────────┤
+│ Firestore      │ localhost:8080 │ http://localhost:4000/firestore │
+├────────────────┼────────────────┼─────────────────────────────────┤
+│ Database       │ localhost:9000 │ http://localhost:4000/database  │
+├────────────────┼────────────────┼─────────────────────────────────┤
+│ Hosting        │ localhost:5000 │ n/a                             │
+├────────────────┼────────────────┼─────────────────────────────────┤
+│ Storage        │ localhost:9199 │ http://localhost:4000/storage   │
+└────────────────┴────────────────┴─────────────────────────────────┘
+  Emulator Hub running at localhost:4400
+  Other reserved ports: 4500
+
+Issues? Report them at https://github.com/firebase/firebase-tools/issues and attach the *-debug.log files.
+ 

@@ -3,15 +3,9 @@ import { Card, Button } from 'react-bootstrap';
 import Link from 'next/link';
 import styled from "styled-components";
 
-export const HalfDiv = styled.div`
-    width: 50%;
-    height: 50%;
-`;
-
 const CaptionedPic = () => {
     return (
         <>
-            <HalfDiv>
                 <Card >
                     <Card.Img variant="top" src="Capture0.png" />
                     <Card.Body>
@@ -32,7 +26,6 @@ const CaptionedPic = () => {
                         </Link>
                     </Card.Body>
                 </Card>
-            </HalfDiv>
         </>
     );
 }

@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Button, Card, CardGroup} from "react-bootstrap";
+import {Button, Card, CardGroup, Row} from "react-bootstrap";
 import Image from 'next/image'
 
 const ScrollablePictures = ({ images }: {images: string[]}) => {
@@ -8,10 +8,13 @@ const ScrollablePictures = ({ images }: {images: string[]}) => {
     const nextImg = () => setPos((pos + 1) % images.length);
     const prevImg = () => setPos(pos === 0 ? images.length - 1 : pos - 1);
 
-
+    if(!images || images == []) return <></>;
     return (
         <div>
-            <div>
+            <div style={{
+                display: 'flex',
+                flexDirection: 'row',
+            }}>
                 <Button onClick={prevImg}/>
                 <Image src={images[pos]} width={800} height={450} alt={''}/>
                 <Button onClick={nextImg}/>

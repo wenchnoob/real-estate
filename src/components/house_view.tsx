@@ -5,8 +5,7 @@ import { useState, useEffect } from "react";
 import { AddListingModal } from "./add_listing_modal";
 import HouseCard from "./house_card";
 import { getAllHouses } from '../scripts/data';
-import { House } from '../scripts/types';
-import { getHouse } from '../scripts/data';
+import { HouseProps } from '../scripts/types';
 
 
 export const StyledContainer = styled(Container)`
@@ -15,16 +14,15 @@ export const StyledContainer = styled(Container)`
     padding: 10px;
 `;
 
-
-const HouseView = ({ isAdmin = false, edit = undefined }: {
+const HouseView = ({ isAdmin = false, edit = undefined}: {
     isAdmin?: boolean;
     edit?: string;
 }) => {
-    const [houses, setHouses] = useState([] as House[]);
+    const [houses, setHouses] = useState([] as HouseProps[]);
     const [show, setShow] = useState(false);
     const [id, setId] = useState('');
 
-    useEffect(() => {getAllHouses().then((hs) => setHouses(hs));
+    useEffect(() => { getAllHouses().then(hs => setHouses(hs));
     }, []);
 
     return (

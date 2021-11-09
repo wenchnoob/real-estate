@@ -1,6 +1,6 @@
 
 
-export interface House {
+export interface HouseProps {
     id: string,
     listed_price: number,
     address: string,

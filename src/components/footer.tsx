@@ -3,15 +3,16 @@ import { Col, Row } from "react-bootstrap";
 import styled from 'styled-components';
 
 export const FooterDiv = styled.div`
+    left: 0px;
     bottom: 0px;
-    position: fixed;
+    position: relative;
     width: 100%;
     background: white;
     z-index: 3;
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 40px;
+    min-height: 40px;
 `;
 
 
